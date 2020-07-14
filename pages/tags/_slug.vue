@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid my-5">
-    <c-modal vote />
     <div class="text-center mb-5">
       <h2>
         Real news, curated by real humans
@@ -52,16 +51,14 @@
 </template>
 <script>
 import axios from 'axios'
-import CModal from '~/components/Modal.vue'
 import Inside from '~/components/Inside.vue'
 export default {
   components: {
-    Inside,
-    CModal
+    Inside
   },
   data() {
     return {
-      urlApi: 'https://newsletters.academlo.com/api/v1/newsletters',
+      urlApi: `https://newsletters.academlo.com/api/v1/tags/${this.$route.params.slug}?include=newsletters`,
       subscribed: [],
       vote: []
     }
@@ -74,27 +71,20 @@ export default {
       axios
         .get(this.urlApi)
         .then((response) => {
-          this.filter(response.data)
+          this.filter(response.data.newsletters)
         })
         .catch(() => {
           alert('Tuvimos un error')
         })
     },
-    // Aqui recibimos como parametro el response.data de la la promesa
     filter(newsletters) {
-      // El filter funciona como un for
       this.subscribed = newsletters.filter((newsletter) => {
-        return newsletter.subscribed >= newsletter.target // Filtramos los que sean mayores o iguales al target
+        return newsletter.subscribed >= newsletter.target
       })
       this.vote = newsletters.filter((newsletter) => {
-        return newsletter.subscribed < newsletter.target // Filtramos los que no alcanzan el target
+        return newsletter.subscribed < newsletter.target
       })
     }
   }
 }
 </script>
-<style lang="sass">
-.img
-  width: 100px
-  height: 100%
-</style>

@@ -1,9 +1,20 @@
 <template>
   <div>
+    <c-header />
     <nuxt />
+    <c-footer />
   </div>
 </template>
-
+<script>
+import CHeader from '~/components/Header.vue'
+import CFooter from '~/components/Footer.vue'
+export default {
+  components: {
+    CHeader,
+    CFooter
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
