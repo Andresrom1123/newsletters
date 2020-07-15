@@ -4,8 +4,8 @@
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <b-form @submit.prevent="passes(onSubmit)">
         <ValidationProvider
-          rules="required|email"
-          name="email"
+          rules="required"
+          name="username"
           v-slot="{ errors }"
         >
           <b-form-group
@@ -17,9 +17,9 @@
             <div class="position-relative">
               <b-form-input
                 id="input-1"
-                v-model="form.email"
+                v-model="form.username"
                 type="email"
-                placeholder="Enter email"
+                placeholder="Enter username"
                 class="col-11 ml-4"
               >
               </b-form-input>
@@ -46,6 +46,7 @@
                 id="input-2"
                 v-model="form.password"
                 type="password"
+                placeholder="Enter password"
                 class="col-11 ml-4"
               >
               </b-form-input>
@@ -64,44 +65,22 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 import { mapMutations } from 'vuex'
 export default {
   layout: 'login',
   data() {
     return {
       form: {
-        email: '',
+        username: '',
         password: ''
-      },
-      error401: ''
+      }
     }
   },
   methods: {
     ...mapMutations(['login']),
     onSubmit() {
-      const endpoint = 'https://newsletters.academlo.com/api/v1/auth/login'
-      axios
-        .post(endpoint, this.form)
-        .then((response) => {
-          // Dirigimos la respuesta de la api a la constante user
-          const user = response.data
-          // Mandamos a llamar el método que mapea la mutación login
-          this.login(user)
-          // Redireccionamos al dashboard
-          this.$router.push('/dashboard')
-        })
-        .catch((error) => {
-          // Si el usuario no existe en la base de datos
-          if (error.response.status === 401) {
-            alert('no existe el usario en la base de datos')
-          } else if (error.response.status === 422) {
-            // Si esta enviando mal la informacion
-            alert('no estoy enviando bien la informacion')
-          } else {
-            alert('Tuvimos un error desconcido')
-          }
-        })
+      this.$router.push('/dashboard')
+      alert('Te has registrado perfectamente')
     }
   }
 }
