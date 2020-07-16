@@ -1,16 +1,16 @@
 <template>
-  <div class="shadow my-4 login bg mx-auto p-3 rounded">
-    <h3 class="text-center text-white">Log In</h3>
+  <div class="shadow my-4 -login mx-auto p-3 border-warning border rounded">
+    <h3 class="text-center">Log In</h3>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <b-form @submit.prevent="passes(onSubmit)">
         <ValidationProvider
+          v-slot="{ errors }"
           rules="required"
           name="username"
-          v-slot="{ errors }"
         >
           <b-form-group
             id="input-group-1"
-            label="Email address:"
+            label="Username:"
             label-for="input-1"
             class="text-muted"
           >
@@ -18,12 +18,12 @@
               <b-form-input
                 id="input-1"
                 v-model="form.username"
-                type="email"
+                type="text"
                 placeholder="Enter username"
                 class="col-11 ml-4"
               >
               </b-form-input>
-              <i class="ico2 position-absolute text-white fas fa-envelope"></i>
+              <i class="-ico2 position-absolute fas fa-user"></i>
             </div>
             <small class="form-text text-danger">
               {{ errors[0] }}
@@ -31,9 +31,9 @@
           </b-form-group>
         </ValidationProvider>
         <ValidationProvider
+          v-slot="{ errors }"
           rules="required"
           name="password"
-          v-slot="{ errors }"
         >
           <b-form-group
             id="input-group-2"
@@ -50,7 +50,7 @@
                 class="col-11 ml-4"
               >
               </b-form-input>
-              <i class="ico2 position-absolute text-white fas fa-key"></i>
+              <i class="-ico2 position-absolute fas fa-key"></i>
             </div>
             <small class="form-text text-danger">
               {{ errors[0] }}
@@ -79,23 +79,10 @@ export default {
   methods: {
     ...mapMutations(['login']),
     onSubmit() {
-      this.$router.push('/dashboard')
       alert('Te has registrado perfectamente')
+      this.login(this.form)
+      this.$router.push('/dashboard')
     }
   }
 }
 </script>
-<style>
-.login {
-  width: 40%;
-}
-.bg {
-  background-color: rgba(255, 193, 7, 0.68);
-}
-.form {
-  width: 100%;
-}
-.ico2 {
-  top: 0.5rem;
-}
-</style>

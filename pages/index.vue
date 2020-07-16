@@ -9,9 +9,18 @@
         and ahead of the curve
       </p>
     </div>
-    <h2 class="text-danger text-center">
+    <div class="row mx-0">
+      <div
+        v-for="newsletter in newsletters"
+        :key="newsletter.id"
+        class="col-lg-3 col-sm-6"
+      >
+        <inside :newsletter="newsletter" suscribed />
+      </div>
+    </div>
+    <!-- <h2 class="text-danger text-center">
       <i class="far fa-times-circle"></i>
-    </h2>
+    </h2> -->
     <div class="text-center my-5">
       <h2>
         Up-and-coming
@@ -22,13 +31,44 @@
         writers and launch them. Vote for all your favorites:
       </p>
     </div>
-    <h2 class="text-danger text-center">
+    <!-- <h2 class="text-danger text-center">
       <i class="far fa-times-circle"></i>
-    </h2>
+    </h2> -->
+    <div class="row mx-0">
+      <div
+        v-for="newsletter in newsletters"
+        :key="newsletter.id"
+        class="col-lg-3 col-sm-6"
+      >
+        <inside :newsletter="newsletter" progress />
+      </div>
+    </div>
+    <c-modal-vote />
+    <c-modal-suscribe />
   </div>
 </template>
-<style lang="sass">
-.img
-  width: 100px
-  height: 100%
-</style>
+<script>
+import Inside from '@/components/general/CCard/CInside'
+import CModalVote from '@/components/general/CModal/CModalVote'
+import CModalSuscribe from '@/components/general/CModal/CModalSuscribe'
+export default {
+  components: {
+    Inside,
+    CModalVote,
+    CModalSuscribe
+  },
+  data() {
+    return {
+      newsletters: [
+        {
+          image: '/favicon.ico',
+          title: '123',
+          description: '123',
+          subscribed: 50,
+          target: 100
+        }
+      ]
+    }
+  }
+}
+</script>

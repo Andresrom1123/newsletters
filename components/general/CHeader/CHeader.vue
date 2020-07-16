@@ -27,6 +27,18 @@
                 All
               </nuxt-link>
             </b-nav-text>
+            <b-nav-text
+              v-for="categorie in categories"
+              :key="categorie.id"
+              class="pb-0 px-3"
+            >
+              <nuxt-link
+                :to="'../tags/' + categorie.slug"
+                class="text-muted text-decoration-none nav-item"
+              >
+                {{ categorie.name }}
+              </nuxt-link>
+            </b-nav-text>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

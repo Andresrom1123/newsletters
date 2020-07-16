@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import CHeader from '~/components/general/CHeader/Header.vue'
-import CFooter from '~/components/general/CFooter/Footer'
+import CHeader from '~/components/general/CHeader/CHeader.vue'
+import CFooter from '~/components/general/CFooter/CFooter'
 export default {
   components: {
     CHeader,

@@ -2,14 +2,14 @@
   <div class="card shadow border px-3 py-4">
     <div v-if="suscribed" class="d-flex mb-3 justify-content-center">
       <div class="shadow rounded-circle overflow-hidden">
-        <img :src="newsletter.image" class="img" alt="..." />
+        <img :src="newsletter.image" class="-img" alt="..." />
       </div>
       <span class="-text-warning">
         DAYLI
       </span>
     </div>
     <div v-if="progress" class="d-flex mb-3">
-      <div class="shadow rounded-circle overflow-hidden img">
+      <div class="shadow rounded-circle overflow-hidden -img">
         <img :src="newsletter.image" width="100%" alt="..." />
       </div>
       <div class="col-lg-8 col-6">
@@ -22,7 +22,8 @@
         <h5 class="text-center">{{ newsletter.title }}</h5>
         <p class="text-muted">{{ newsletter.description }}</p>
         <div
-          class="d-flex pointer border p-2 rounded justify-content-between align-items-center"
+          @click="$bvModal.show('bv-modal-suscribe')"
+          class="d-flex -pointer border p-2 rounded justify-content-between align-items-center"
         >
           <div>
             <i class="-text-warning fas fa-envelope"></i>
@@ -33,8 +34,8 @@
       </div>
       <div v-if="progress">
         <div
-          @click="$bvModal.show('bv-modal-example')"
-          class="d-flex pointer border p-2 rounded justify-content-between align-items-center"
+          @click="$bvModal.show('bv-modal-progress')"
+          class="d-flex -pointer border p-2 rounded justify-content-between align-items-center"
         >
           <div>
             <i class="-text-warning fas fa-envelope"></i>
@@ -44,8 +45,8 @@
         </div>
         <b-progress
           :value="newsletter.subscribed"
-          variant="warning"
           :max="newsletter.target"
+          variant="warning"
           class="my-3"
           animated
         ></b-progress>
