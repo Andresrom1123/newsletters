@@ -6,7 +6,7 @@
       </h1>
       <div>
         <nuxt-link to="/">
-          <span class="-text-warning pt-2 px-3">
+          <span @click="logOut()" class="-text-warning pt-2 px-3">
             <i class="fas fa-arrow-left"></i>
           </span>
         </nuxt-link>
@@ -26,6 +26,13 @@ import CModalCreate from '@/components/general/CModal/CModalCreate'
 export default {
   components: {
     CModalCreate
+  },
+  data() {
+    return {
+      logOut() {
+        localStorage.removeItem('vuex')
+      }
+    }
   }
 }
 </script>

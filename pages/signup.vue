@@ -107,6 +107,7 @@ export default {
   methods: {
     onSubmit() {
       alert('Te has registrado perfectamente')
+      this.$router.push('/')
     }
   }
 }

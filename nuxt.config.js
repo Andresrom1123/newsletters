@@ -1,5 +1,5 @@
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -33,7 +33,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/vee-validate.js'
+    '~/plugins/vee-validate.js',
+    {src: '~/plugins/localStorage.js', ssr: false}
   ],
   /*
    ** Nuxt.js dev-modules
