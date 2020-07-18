@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow my-5 -login mx-auto p-3 border-warning border rounded">
+  <div class="shadow my-4 -login mx-auto p-3 border-warning border rounded">
     <h3 class="text-center">Sign up</h3>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <b-form @submit.prevent="passes(onSubmit)">
@@ -93,7 +93,8 @@
 </template>
 <script>
 export default {
-  layout: 'nolayout',
+  layout: 'login',
+  middleware: 'logged-dashboard',
   data() {
     return {
       form: {

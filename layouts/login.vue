@@ -4,7 +4,8 @@
       <div class="d-flex justify-content-center m-3">
         <div class="col-6 d-flex justify-content-center align-items-center">
           <h1 class="mb-0 -text-warning">
-            NEWSLETTER ADMIN
+            NEWSLETTER
+            {{ this.$route.name }}
           </h1>
         </div>
       </div>

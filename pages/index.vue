@@ -43,19 +43,18 @@
         <inside :newsletter="newsletter" progress />
       </div>
     </div>
-    <c-modal-vote />
-    <c-modal-suscribe />
+    <c-modal />
   </div>
 </template>
 <script>
 import Inside from '@/components/general/CCard/CInside'
-import CModalVote from '@/components/general/CModal/CModalVote'
-import CModalSuscribe from '@/components/general/CModal/CModalSuscribe'
+import CModal from '@/components/general/CModal/CModal'
 export default {
+  middleware: 'logged',
+  layout: 'index',
   components: {
     Inside,
-    CModalVote,
-    CModalSuscribe
+    CModal
   },
   data() {
     return {

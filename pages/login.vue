@@ -68,6 +68,7 @@
 import { mapMutations } from 'vuex'
 export default {
   layout: 'login',
+  middleware: 'logged-dashboard',
   data() {
     return {
       form: {
@@ -77,11 +78,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['login']),
+    ...mapMutations({
+      login: 'login'
+    }),
     onSubmit() {
       alert('Te has registrado perfectamente')
       this.login(this.form)
-      this.$router.push('/dashboard')
+      this.$router.push('/home')
     }
   }
 }

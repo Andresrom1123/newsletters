@@ -6,7 +6,7 @@
       </h1>
       <div>
         <nuxt-link to="/">
-          <span @click="logOut()" class="-text-warning pt-2 px-3">
+          <span @click="exit()" class="-text-warning pt-2 px-3">
             <i class="fas fa-arrow-left"></i>
           </span>
         </nuxt-link>
@@ -22,16 +22,19 @@
   </header>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import CModalCreate from '@/components/general/CModal/CModalCreate'
 export default {
   components: {
     CModalCreate
   },
-  data() {
-    return {
-      logOut() {
-        localStorage.removeItem('vuex')
-      }
+  methods: {
+    ...mapMutations({
+      logOut: 'logOut'
+    }),
+    exit() {
+      localStorage.removeItem('vuex')
+      this.logOut()
     }
   }
 }

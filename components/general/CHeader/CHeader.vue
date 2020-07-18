@@ -5,6 +5,9 @@
         [ INSIDE ]
       </h1>
       <div>
+        <span @click="exit()" class="-pointer -text-warning px-2"
+          ><i class="fas fa-arrow-left"></i>
+        </span>
         <span class="-text-warning px-2"><i class="fas fa-search"></i></span>
         <nuxt-link to="/login" class="text-decoration-none">
           <span class="-text-warning px-2"><i class="fas fa-user "></i></span>
@@ -22,7 +25,7 @@
             <b-nav-text class="pb-0 px-3">
               <nuxt-link
                 class="text-muted text-decoration-none nav-item"
-                to="/"
+                to="/home"
               >
                 All
               </nuxt-link>
@@ -47,7 +50,14 @@
 </template>
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 export default {
+  props: {
+    arrow: {
+      type: Boolean,
+      default: () => false
+    }
+  },
   data() {
     return {
       urlApi: 'https://newsletters.academlo.com/api/v1/tags',
@@ -58,6 +68,9 @@ export default {
     this.getNewsletter()
   },
   methods: {
+    ...mapMutations({
+      logOut: 'logOut'
+    }),
     getNewsletter() {
       axios
         .get(this.urlApi)
@@ -67,6 +80,11 @@ export default {
         .catch(() => {
           alert('Tuvimos un error')
         })
+    },
+    exit() {
+      localStorage.removeItem('vuex')
+      this.$router.push('/')
+      this.logOut()
     }
   }
 }
