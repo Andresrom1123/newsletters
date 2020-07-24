@@ -82,9 +82,9 @@ export default {
         })
     },
     exit() {
-      localStorage.removeItem('vuex')
       this.$router.push('/')
       this.logOut()
+      localStorage.removeItem('vuex')
     }
   }
 }

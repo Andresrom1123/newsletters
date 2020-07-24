@@ -4,7 +4,7 @@
       <template v-slot:modal-title>
         <p>
           <span class="text-danger">Delete</span>
-          123
+          {{ selectedNewsletter.title }}
         </p>
       </template>
       <div class="d-block text-center">
@@ -29,3 +29,13 @@
     </b-modal>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    selectedNewsletter: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>

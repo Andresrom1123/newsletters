@@ -87,11 +87,20 @@
         <b-button class="btn-block text-muted" type="submit" variant="light">
           Sign up
         </b-button>
+        <nuxt-link
+          class="text-center text-decoration-none nav-item"
+          to="/login"
+        >
+          <p class="mt-2 mb-0 text-primary">
+            Log in
+          </p>
+        </nuxt-link>
       </b-form>
     </ValidationObserver>
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 export default {
   layout: 'login',
   middleware: 'logged-dashboard',
@@ -106,9 +115,13 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      signUp: 'signUp'
+    }),
     onSubmit() {
       alert('Te has registrado perfectamente')
-      this.$router.push('/')
+      this.$router.push('/login')
+      this.signUp(this.form)
     }
   }
 }

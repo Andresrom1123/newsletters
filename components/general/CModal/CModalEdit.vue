@@ -4,7 +4,7 @@
       <template v-slot:modal-title>
         <p>
           <span class="text-info">Edit</span>
-          123
+          {{ selectedNewsletter.title }}
         </p>
       </template>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -14,8 +14,7 @@
               <div>
                 <b-form-input
                   id="title"
-                  :value="newsletters.title"
-                  v-model="newsletters.title"
+                  v-model="newsletter.title"
                   type="text"
                   class="col-10"
                 >
@@ -35,8 +34,7 @@
               <div>
                 <b-form-textarea
                   id="textarea"
-                  :value="newsletters.description"
-                  v-model="newsletters.description"
+                  v-model="newsletter.description"
                   rows="3"
                   max-rows="6"
                   class="col-10"
@@ -50,12 +48,7 @@
           <ValidationProvider v-slot="{ errors }" rules="required" name="image">
             <b-form-group id="image" class="text-muted" label="Image:">
               <div>
-                <b-form-file
-                  id="image"
-                  :value="newsletters.image"
-                  v-model="newsletters.image"
-                  size="sm"
-                >
+                <b-form-file id="image" v-model="newsletter.image" size="sm">
                 </b-form-file>
               </div>
               <small class="form-text text-danger">
@@ -72,7 +65,7 @@
               <div>
                 <b-form-input
                   id="subscribed"
-                  v-model="newsletters.subscribed"
+                  v-model="newsletter.subscribed"
                   type="number"
                   class="col-3"
                 >
@@ -92,7 +85,7 @@
               <div>
                 <b-form-input
                   id="target"
-                  v-model="newsletters.target"
+                  v-model="newsletter.target"
                   type="number"
                   class="col-3"
                 >
@@ -121,20 +114,27 @@
 </template>
 <script>
 export default {
+  props: {
+    selectedNewsletter: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      newsletters: {
-        title: '123',
-        description: '123 ',
+      newsletter: {
         image: null,
-        subscribed: 50,
-        target: 100
+        title: '',
+        description: '',
+        subscribed: null,
+        target: null
       }
     }
   },
   methods: {
     onSubmit() {
       alert('Te has registrado perfectamente')
+      this.$bvModal.hide('modal-edit')
     }
   }
 }

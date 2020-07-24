@@ -4,7 +4,6 @@
       <template v-slot:modal-title>
         <p>
           <span class="text-success">Create</span>
-          123
         </p>
       </template>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -128,6 +127,7 @@ export default {
   methods: {
     onSubmit() {
       alert('Te has registrado perfectamente')
+      this.$bvModal.hide('modal-create')
     }
   }
 }

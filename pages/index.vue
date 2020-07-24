@@ -15,7 +15,7 @@
         :key="newsletter.id"
         class="col-lg-3 col-sm-6"
       >
-        <inside :newsletter="newsletter" suscribed />
+        <inside @selected="changeSelected" :newsletter="newsletter" suscribed />
       </div>
     </div>
     <!-- <h2 class="text-danger text-center">
@@ -43,7 +43,7 @@
         <inside :newsletter="newsletter" progress />
       </div>
     </div>
-    <c-modal />
+    <c-modal :selectedNewsletter="selectedNewsletter" />
   </div>
 </template>
 <script>
@@ -61,12 +61,18 @@ export default {
       newsletters: [
         {
           image: '/favicon.ico',
-          title: '123',
+          title: 'prueba',
           description: '123',
           subscribed: 50,
           target: 100
         }
-      ]
+      ],
+      selectedNewsletter: {}
+    }
+  },
+  methods: {
+    changeSelected(selected) {
+      this.selectedNewsletter = selected
     }
   }
 }

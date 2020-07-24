@@ -22,7 +22,7 @@
         <h5 class="text-center">{{ newsletter.title }}</h5>
         <p class="text-muted">{{ newsletter.description }}</p>
         <div
-          @click="$bvModal.show('bv-modal')"
+          @click="openModal()"
           class="d-flex -pointer border p-2 rounded justify-content-between align-items-center"
         >
           <div>
@@ -34,7 +34,7 @@
       </div>
       <div v-if="progress">
         <div
-          @click="$bvModal.show('bv-modal')"
+          @click="openModal()"
           class="d-flex -pointer border p-2 rounded justify-content-between align-items-center"
         >
           <div>
@@ -82,6 +82,12 @@ export default {
     newsletter: {
       type: Object,
       default: () => []
+    }
+  },
+  methods: {
+    openModal() {
+      this.$bvModal.show('bv-modal')
+      this.$emit('selected', this.newsletter)
     }
   }
 }

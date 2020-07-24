@@ -33,8 +33,8 @@ export default {
       logOut: 'logOut'
     }),
     exit() {
-      localStorage.removeItem('vuex')
       this.logOut()
+      localStorage.removeItem('vuex')
     }
   }
 }

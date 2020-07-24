@@ -1,22 +1,14 @@
 <template>
   <div class="container my-5">
     <b-table :items="newsletters" :fields="fields" striped dark bordered>
-      <template v-slot:cell(Options)>
+      <template v-slot:cell(Options)="data">
         <div class="text-center">
-          <b-button
-            @click="$bvModal.show('modal-delete')"
-            class="p-0"
-            variant="link"
-          >
+          <b-button @click="openModalDelete(data)" class="p-0" variant="link">
             <span>
               <i class="text-danger fas fa-trash-alt"></i>
             </span>
           </b-button>
-          <b-button
-            @click="$bvModal.show('modal-edit')"
-            class="p-0"
-            variant="link"
-          >
+          <b-button @click="openModalEdit(data)" class="p-0" variant="link">
             <span>
               <i class="text-info fas fa-edit"></i>
             </span>
@@ -24,8 +16,8 @@
         </div>
       </template>
     </b-table>
-    <c-modal-edit />
-    <c-modal-delete />
+    <c-modal-delete :selectedNewsletter="selectedNewsletter" />
+    <c-modal-edit :selectedNewsletter="selectedNewsletter" />
   </div>
 </template>
 <script>
@@ -40,10 +32,18 @@ export default {
   },
   data() {
     return {
+      selectedNewsletter: {},
       newsletters: [
         {
-          image: '/favicon.ico',
-          title: '123',
+          image: null,
+          title: 'prueba',
+          description: '123',
+          subscribed: 50,
+          target: 100
+        },
+        {
+          image: null,
+          title: '3',
           description: '123',
           subscribed: 50,
           target: 100
@@ -63,6 +63,16 @@ export default {
         },
         'Options'
       ]
+    }
+  },
+  methods: {
+    openModalDelete(data) {
+      this.$bvModal.show('modal-delete')
+      this.selectedNewsletter = data.item
+    },
+    openModalEdit(data) {
+      this.$bvModal.show('modal-edit')
+      this.selectedNewsletter = data.item
     }
   }
 }

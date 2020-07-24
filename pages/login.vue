@@ -1,5 +1,10 @@
 <template>
   <div class="shadow my-4 -login mx-auto p-3 border-warning border rounded">
+    <b-alert :show="!$store.state.message == ''" dismissible fade>
+      <small>
+        {{ $store.state.message + ' ' + $store.state.user.username }}
+      </small>
+    </b-alert>
     <h3 class="text-center">Log In</h3>
     <ValidationObserver ref="observer" v-slot="{ passes }">
       <b-form @submit.prevent="passes(onSubmit)">
@@ -60,6 +65,14 @@
         <b-button class="btn-block text-muted" type="submit" variant="light">
           Log in
         </b-button>
+        <nuxt-link
+          class="text-center text-decoration-none nav-item"
+          to="/signup"
+        >
+          <p class="mt-2 mb-0 text-primary">
+            Sign up
+          </p>
+        </nuxt-link>
       </b-form>
     </ValidationObserver>
   </div>
